@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/textView"
+        android:text="@string/app_name"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:padding="35dp"
+        android:text="@string/record_workout"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/user_profile"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="47dp"
+        android:onClick="goToUserProfile"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/distance"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/duration"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/duration_chrono"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="26dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/start_distance"
+        android:id="@+id/distance_chrono"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView7" />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/start_duration"
+        android:id="@+id/duration_chrono"
+        android:layout_above="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/km"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/distance_chrono"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="49dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/hours"
+        android:id="@+id/textView8"
+        android:layout_alignTop="@+id/textView7"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="@string/stop_activity"
+        android:textOff="@string/start_activity"
+        android:id="@+id/toggleButton"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/textView4" />
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.website.alphafitness.Portrait_Fragment_RecordWorkout"
+        android:layout_below="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/toggleButton" />
+
+</RelativeLayout>
