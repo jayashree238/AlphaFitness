@@ -57,6 +57,7 @@ public class LogWorkout extends Service implements LocationListener, SensorEvent
     private int counterSteps = 0;
     private int stepDetector = 0;
 
+    int updateLatLng = 2;
     public static final long FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS = 5000;
 
     /**
@@ -65,6 +66,7 @@ public class LogWorkout extends Service implements LocationListener, SensorEvent
     @Override
     public void onCreate() {
         super.onCreate();
+
 //        Toast.makeText(this, "ServiceStarting3", Toast.LENGTH_SHORT).show();
         buildGoogleApiClient();
         //Step counter and step detector
@@ -108,6 +110,7 @@ public class LogWorkout extends Service implements LocationListener, SensorEvent
     @Override
     public void onDestroy() {
         super.onDestroy();
+        updateLatLng = 0;
         stopLocationUpdates();
         mSensorManager.unregisterListener(this, mStepCounterSensor);
         mSensorManager.unregisterListener(this, mStepDetectorSensor);
@@ -141,12 +144,16 @@ public class LogWorkout extends Service implements LocationListener, SensorEvent
     public void onLocationChanged(Location location) {
         myLocation = location;
         if (location != null)
-            updateDB();
+            updateLatLng++;
+            if(updateLatLng % 3 == 0) {
+
+                updateDB();
+            }
     }
 
     private void updateDB() {
         workoutPoint = new Workout_Point(workoutID, myLocation.getLatitude(), myLocation.getLongitude());
-        String success = dataHelper.addWorkoutPoint(workoutPoint);
+        dataHelper.addWorkoutPoint(workoutPoint);
 
 //        Toast.makeText(this, success, Toast.LENGTH_SHORT).show();
 //

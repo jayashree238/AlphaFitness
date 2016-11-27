@@ -76,11 +76,11 @@ public class DataHelper extends SQLiteOpenHelper{
         return c.getInt(0);
     }
 
-    public String addWorkoutPoint(Workout_Point workoutPoint){
+    public void addWorkoutPoint(Workout_Point workoutPoint){
         SQLiteDatabase db = getWritableDatabase();
         String insert = "INSERT INTO " + TABLE_WORKOUT_POINT + " (WORKOUT_ID, LATITUDE, LONGITUDE, CURRENTTIME) VALUES (" + workoutPoint.getWorkoutID() + ", " + workoutPoint.getLatitude() + ", " + workoutPoint.getLongitude() + ", " + workoutPoint.getCurrentTime() + ");";
         db.execSQL(insert);
-        return "Successfully Updated WorkoutPoint(" + workoutPoint.getWorkoutID() + ", " + workoutPoint.getLatitude() + ", " + workoutPoint.getLongitude() + ", " + workoutPoint.getCurrentTime() + ")";
+
     }
 
     public ArrayList<LatLng> getLastWorkoutPath(){
@@ -246,7 +246,8 @@ public class DataHelper extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT MIN(DURATION) FROM " + TABLE_CHART, null);
         c.moveToFirst();
-        String milliseconds = Double.toString(c.getDouble(0));
+        double result = c.getDouble(0) * 0.0166667;;
+        String milliseconds = Double.toString(result);
         return milliseconds;
     }
 
@@ -340,7 +341,8 @@ public class DataHelper extends SQLiteOpenHelper{
         Cursor c = db.rawQuery("SELECT MAX(DURATION) FROM " + TABLE_CHART, null);
         c.moveToFirst();
         Log.v(LOG_TAG, "calcMax: " + c.getDouble(0));
-        String milliseconds = Double.toString(c.getDouble(0));
+        double result = c.getDouble(0) * 0.0166667;
+        String milliseconds = Double.toString(result);
         return milliseconds;
 
     }
@@ -350,7 +352,8 @@ public class DataHelper extends SQLiteOpenHelper{
         Cursor c = db.rawQuery("SELECT AVG(DURATION) FROM " + TABLE_CHART, null);
         c.moveToFirst();
         Log.v(LOG_TAG, "calcAverage: " + c.getDouble(0));
-        String milliseconds = Double.toString(c.getDouble(0));
+        double result = c.getDouble(0) * 0.0166667;
+        String milliseconds = Double.toString(result);
         return milliseconds;
     }
 }

@@ -227,6 +227,7 @@ public class Portrait_Fragment_RecordWorkout extends Fragment implements Locatio
                 duration.setBase(SystemClock.elapsedRealtime());
                 durationSetUp += 1;
                 textDistance.setText("0.0");
+                mMap.clear();
                 SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                         .findFragmentById(R.id.map);
                 mapFragment.getMapAsync(this);
