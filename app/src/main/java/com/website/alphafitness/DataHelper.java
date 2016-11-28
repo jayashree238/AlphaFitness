@@ -87,14 +87,17 @@ public class DataHelper extends SQLiteOpenHelper{
         ArrayList<LatLng> result = new ArrayList<LatLng>();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cWorkout = db.rawQuery("SELECT _ID FROM " + TABLE_WORKOUT, null);
-        cWorkout.moveToLast();
-        int lastWorkoutID = cWorkout.getInt(0);
+        if(cWorkout.moveToLast()) {
 
-        Cursor cWorkoutPoint = db.rawQuery("SELECT * FROM " + TABLE_WORKOUT_POINT + " WHERE WORKOUT_ID = " + lastWorkoutID, null);
-        cWorkoutPoint.moveToFirst();
-        for(int i = 0; i < cWorkoutPoint.getCount(); i++){
-            cWorkoutPoint.moveToPosition(i);
-            result.add(new LatLng(cWorkoutPoint.getDouble(2), cWorkoutPoint.getDouble(3)));
+            int lastWorkoutID = cWorkout.getInt(0);
+
+            Cursor cWorkoutPoint = db.rawQuery("SELECT * FROM " + TABLE_WORKOUT_POINT + " WHERE WORKOUT_ID = " + lastWorkoutID, null);
+            cWorkoutPoint.moveToFirst();
+            for (int i = 0; i < cWorkoutPoint.getCount(); i++) {
+                cWorkoutPoint.moveToPosition(i);
+                result.add(new LatLng(cWorkoutPoint.getDouble(2), cWorkoutPoint.getDouble(3)));
+            }
+
         }
         return result;
     }
