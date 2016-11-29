@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DataHelper extends SQLiteOpenHelper{
     private static final String LOG_TAG = DataHelper.class.getName();
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     private static final String DATABASE_NAME = "alphaFitnessDatabase";
 
     //Table Names
